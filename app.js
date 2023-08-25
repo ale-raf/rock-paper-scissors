@@ -21,21 +21,33 @@ function convertToWord(letter) {
 }
 
 function win(user, computer) {
+    const userChoice_div = document.getElementById(user);
     userScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
     result.innerHTML = `${convertToWord(user)}(user) beats ${convertToWord(computer)}(comp). You win ! 🔥`;
+    userChoice_div.classList.add("green-glow");
+    setTimeout(() => {
+        userChoice_div.classList.remove("green-glow");
+    }, 300)
 }
 
-function lose() {
-    // computerScore++;
-    // computerScore_span.innerHTML = computerScore;
-    // userScore_span.innerHTML = userScore;
-    // result.innerHTML = `${convertToWord(computer)} beats ${convertToWord(user)}. You lose ! 🔥`;
+function lose(user, computer) {
+    const userChoice_div = document.getElementById(user);
+    computerScore++;
+    userScore_span.innerHTML = userScore;
+    computerScore_span.innerHTML = computerScore;
+    result.innerHTML = `${convertToWord(user)}(user) loses to ${convertToWord(computer)}(comp). You lost... 🫤`;
+    userChoice_div.classList.add("red-glow");
+    setTimeout(() => {
+        document.getElementById(user).classList.remove("red-glow");
+    }, 300)
 }
 
-function draw() {
-
+function draw(user, computer) {
+    userScore_span.innerHTML = userScore;
+    computerScore_span.innerHTML = computerScore;
+    result.innerHTML = `${convertToWord(user)}(user) equals ${convertToWord(computer)}(comp). It's a draw. 😉`;
 }
 
 function game(userChoice) {
